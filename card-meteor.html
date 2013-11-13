@@ -1,0 +1,90 @@
+<head>
+  <title>card-meteor</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name="card">
+  <div id="{{_id}}" draggable="true" ondragstart="dragCard(event);" class="card">
+    <img draggable='false' src="{{path}}"> <!-- TODO: needs UID -->
+  </div>
+</template>
+
+<template name="deck">
+  <div id="{{deck}}-deck" class="deck">
+    <div class="facedown-pile">
+      {{#with card_back}}
+        {{> card }}
+        <!--<div class="card"><img src="images/base/door_back.jpg" /></div>-->
+      {{/with}}
+    </div>
+    <div class="discards" ondrop="dropCard(event, '{{deck}}-discard');" ondragover="event.preventDefault();">
+      {{#with top_discard}}
+        {{> card }}
+      {{/with}}
+    </div>
+  </div>
+</template>
+
+<template name="main">
+  <div class="col-md-6" id="board">
+    <div class="inner">
+      <div class="title">Board</div>
+
+      <div id="decks">
+        {{#each decks}}
+          {{> deck}}
+        {{/each}}
+      </div>
+
+      <div class="clear"></div>
+
+      <div id="playing-area" ondrop="dropCard(event, 'board');" ondragover="event.preventDefault();">
+        <div class="cards">
+          {{#each board_cards}}
+            {{> card}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" id="hand" ondrop="dropCard(event, 'hand');" ondragover="event.preventDefault();">
+    <div class="inner">
+      My Hand
+      <div class="cards">
+        {{#each hand_cards}}
+          {{> card}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" id="character" ondrop="dropCard(event, 'character');" ondragover="event.preventDefault();">
+    <div class="inner">
+      My Area
+      <div class="cards">
+        {{#each character_cards}}
+          {{> card}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+</template>
+
+<!--
+vim: sts=2 sw=2 ft=handlebars.html syntax=handlebars
+-->

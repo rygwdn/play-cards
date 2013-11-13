@@ -1,0 +1,113 @@
+@card-width: 120px;
+@card-height: 200px;
+@card-margin: 2px;
+@margin-size: 20px;
+@inner-padding: 10px;
+
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.colored-area (@bg, @fg, @radius: 15px) {
+    .rounded-corners(@radius);
+    background-color: @bg;
+    border-color: @fg;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.card {
+    // width: @card-width;
+    // height: @card-height;
+    margin: @card-margin;
+    float: left;
+    img {
+        width: @card-width;
+        height: @card-height;
+    }
+}
+
+.deck {
+    //float: left;
+    //clear: both;
+}
+
+.facedown-pile, .discards {
+    float: left;
+}
+
+#board {
+    padding: @margin-size;
+    //min-height: 100%;
+    height: 100%;
+    .inner {
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        padding: @inner-padding;
+        .colored-area(#DDD, #9999DD);
+    }
+}
+
+#hand {
+    padding: @margin-size @margin-size (@margin-size / 2) (@margin-size / 2);
+    //min-height: 50%;
+    height: 50%;
+    .inner {
+        overflow: auto;
+        float: left;
+        width: 100%;
+        height: 100%;
+        padding: @inner-padding;
+        .colored-area(#DDD, #9999DD);
+    }
+}
+
+#character {
+    padding: (@margin-size / 2) @margin-size @margin-size (@margin-size / 2);
+    //min-height: 50%;
+    height: 50%;
+    .inner {
+        overflow: auto;
+        float: right;
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: @inner-padding;
+        .colored-area(#DDD, #9999DD);
+    }
+}
+
+.clear {
+    clear: both;
+}
+
+.deck {
+    padding: 4px;
+    .colored-area(#EEE, #9999DD, 10px);
+}
+
+#gold-deck {
+    float: left;
+}
+
+#door-deck {
+    float: right;
+}
+
+.title {
+    width: 90px; // TODO: increase..
+    //float: left;
+    font-size: 200%;
+    //text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body, html {
+    height: 100%;
+}
